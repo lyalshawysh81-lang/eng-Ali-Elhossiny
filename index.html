@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Ali Elhossiny — Student and Full Stack Developer. Explore my web development projects.">
+  <title>Ali Elhossiny | Developer Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #080b14;
+      --panel: #101625;
+      --text: #f1f5ff;
+      --muted: #9ba8bd;
+      --cyan: #67e8f9;
+      --purple: #a78bfa;
+      --border: rgba(157, 179, 220, .15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 10% 15%, #122d444c, transparent 45%),
+        radial-gradient(ellipse at 90% 55%, #542e7140, transparent 40%);
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--cyan);
+      opacity: .35;
+      box-shadow: 0 0 18px var(--cyan);
+      animation: float 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(-70px) translateX(30px); }
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 5px;
+    }
+
+    .container { width: min(1100px, 90%); margin: auto; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 11, 20, .82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span, .gradient {
+      background: linear-gradient(110deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      transition: color .25s, transform .25s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); transform: translateY(-2px); }
+
+    .hero {
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      padding: 90px 0 100px;
+    }
+
+    .hero-content { max-width: 790px; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      background: #111a29;
+      padding: 8px 14px;
+      border-radius: 100px;
+      color: #c6d5e9;
+      font-size: .78rem;
+      margin-bottom: 28px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #4ade8080;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.3rem);
+      line-height: 1.04;
+      letter-spacing: -5px;
+      margin-bottom: 22px;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: #d0d9eb;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .hero p, .section-intro {
+      color: var(--muted);
+      max-width: 600px;
+      font-size: 1.02rem;
+    }
+
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font: inherit;
+      font-size: .92rem;
+      font-weight: 600;
+      transition: transform .25s, box-shadow .25s, background .25s, border-color .25s;
+    }
+
+    .btn-primary {
+      color: #080b14;
+      background: linear-gradient(110deg, var(--cyan), #a5f3fc);
+      border-color: transparent;
+    }
+
+    .btn-secondary { background: #ffffff06; }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 10px 35px #67e8f922;
+      border-color: var(--cyan);
+    }
+
+    .btn-primary:hover { box-shadow: 0 10px 35px #67e8f94d; }
+
+    section { padding: 75px 0; }
+
+    .section-head { margin-bottom: 32px; }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: .76rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h2.section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+    }
+
+    .section-intro { margin-top: 12px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #131c2c, #0d1220);
+      padding: 25px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), #67e8f917, transparent 65%);
+      transition: opacity .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #67e8f966;
+      box-shadow: 0 18px 45px #0003, 0 0 25px #67e8f90a;
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--cyan);
+      background: #67e8f90b;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      transition: transform .3s, background .3s, color .3s, box-shadow .3s;
+    }
+
+    .card:hover .icon-box {
+      transform: rotate(-8deg) scale(1.12);
+      color: #080b14;
+      background: var(--cyan);
+      box-shadow: 0 0 25px #67e8f94d;
+    }
+
+    .card h3 { font-size: 1.15rem; margin-bottom: 9px; }
+    .card p { color: var(--muted); font-size: .91rem; }
+
+    .project-card { min-height: 250px; display: flex; flex-direction: column; }
+
+    .project-number {
+      color: var(--purple);
+      font-size: .76rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+
+    .tag {
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 4px 10px;
+      color: #c3cee0;
+      font-size: .73rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--cyan);
+      font-size: .88rem;
+      font-weight: 600;
+      transition: gap .25s;
+    }
+
+    .project-link:hover { gap: 14px; }
+
+    .contact-panel {
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(28px, 7vw, 65px) 20px;
+      background: radial-gradient(ellipse at 50% 0%, #67e8f910, transparent 70%), #101625b8;
+    }
+
+    .contact-panel .section-intro { margin: 15px auto 0; }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .social {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      background: #ffffff05;
+      border-radius: 15px;
+      color: #c5d0e2;
+      font-size: 1.25rem;
+      transition: transform .25s, color .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .social:hover {
+      transform: translateY(-6px) rotate(-5deg);
+      color: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: 0 0 22px #67e8f926;
+    }
+
+    .social.instagram:hover { color: #f472b6; border-color: #f472b6; box-shadow: 0 0 22px #f472b626; }
+    .social.whatsapp:hover { color: #4ade80; border-color: #4ade80; box-shadow: 0 0 22px #4ade8026; }
+
+    footer {
+      padding: 28px 0;
+      margin-top: 50px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s, transform .7s;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner { min-height: 68px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: .8rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { min-height: auto; padding: 95px 0 65px; }
+      h1 { letter-spacing: -2.5px; }
+    }
+
+    @media (max-width: 520px) {
+      .nav-inner { align-items: flex-start; padding: 17px 0; flex-direction: column; gap: 10px; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 55px 0; }
+      .hero { padding-top: 65px; }
+      .hero p { font-size: .95rem; }
+      .actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particles" aria-hidden="true"></div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="#home" class="logo">ALI<span>.DEV</span></a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="container hero" id="home">
+      <div class="hero-content reveal">
+        <div class="status"><span class="status-dot"></span> Student · Open to Learning & Collaboration</div>
+        <p class="eyebrow">Hello, world! I'm</p>
+        <h1>Ali<br><span class="gradient">Elhossiny.</span></h1>
+        <h2>Student & Full Stack Developer</h2>
+        <p>
+          I'm 16 years old and passionate about technology,
+          web development, and creating digital experiences.
+          I turn ideas into projects while learning something new every day.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">
+            Explore My Work <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a class="btn btn-secondary" href="#contact">
+            Let's Connect <i class="fa-regular fa-paper-plane"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">A little about me</p>
+          <h2 class="section-title">Learning. Building. <span class="gradient">Growing.</span></h2>
+          <p class="section-intro">
+            I'm a student exploring the world of web development.
+            My goal is to build useful, modern, and visually engaging websites.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card reveal">
+            <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>Student</h3>
+            <p>Balancing education with my passion for technology and programming.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+            <h3>Web Development</h3>
+            <p>Exploring frontend and backend development to create complete web experiences.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
+            <h3>Creative Thinking</h3>
+            <p>Experimenting with ideas, designs, and interactive details that make websites stand out.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-title">Projects I've <span class="gradient">Built.</span></h2>
+          <p class="section-intro">A growing collection of my work and experiments.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card project-card reveal">
+            <div class="project-number">PROJECT 01 / WEB</div>
+            <div class="icon-box"><i class="fa-solid fa-pizza-slice"></i></div>
+            <h3>Pizza Website</h3>
+            <p>A pizza website project created as part of my web development journey.</p>
+            <div class="tags">
+              <span class="tag">Web Design</span>
+              <span class="tag">Development</span>
+            </div>
+            <span class="project-link">Project showcase <i class="fa-solid fa-arrow-right"></i></span>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="project-number">PROJECT 02 / NEXT</div>
+            <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>Something New</h3>
+            <p>New ideas, new challenges, and more projects coming as I continue learning.</p>
+            <div class="tags">
+              <span class="tag">Learning</span>
+              <span class="tag">Building</span>
+            </div>
+            <span class="project-link">Coming soon <i class="fa-solid fa-arrow-right"></i></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <p class="eyebrow">Have an idea?</p>
+          <h2 class="section-title">Let's make something <span class="gradient">great.</span></h2>
+          <p class="section-intro">
+            Want to connect, talk about development, or see what I'm building?
+            Feel free to reach out.
+          </p>
+
+          <div class="actions" style="justify-content:center">
+            <a class="btn btn-primary"
+               href="https://wa.me/201020171456"
+               target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <a class="btn btn-secondary"
+               href="https://www.instagram.com/ali_elhossiny_/"
+               target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-instagram"></i> Follow on Instagram
+            </a>
+          </div>
+
+          <div class="socials">
+            <a class="social whatsapp" href="https://wa.me/201020171456"
+               target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a class="social instagram" href="https://www.instagram.com/ali_elhossiny_/"
+               target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Ali Elhossiny. All rights reserved.</span>
+      <span>Designed & built with <span style="color:#67e8f9">curiosity</span>.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Floating background particles
+    const particleArea = document.getElementById("particles");
+
+    for (let i = 0; i < 24; i++) {
+      const orb = document.createElement("span");
+      orb.className = "orb";
+      orb.style.left = Math.random() * 100 + "%";
+      orb.style.top = Math.random() * 100 + "%";
+      orb.style.animationDelay = Math.random() * -8 + "s";
+      orb.style.animationDuration = (6 + Math.random() * 7) + "s";
+      particleArea.appendChild(orb);
+    }
+
+    // Reveal elements as they enter the viewport
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    // Interactive light follows the mouse over project cards
+    document.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (event.clientX - rect.left) + "px");
+        card.style.setProperty("--my", (event.clientY - rect.top) + "px");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
